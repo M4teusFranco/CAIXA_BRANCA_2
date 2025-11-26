@@ -2,16 +2,27 @@ package calculadora;
 
 public class TesteCalculadora {
 
-	public static void main(String[] args) {
-		Calculadora calc = new Calculadora();
-		
-		// Testes rápidos
-		calc.calc(a:2, b:3, op:"+"); // esperado: 5
-		calc.calc(a:10, b:4, op:"-"); // esperado: 6
-		calc.calc(a:3, b:5, op:"*"); // esperado: 15
-		calc.calc(a:8, b:2, op:"/"); // esperado: 4
-		calc.calc(a:8, b:0, op:"/"); // divisão por 0
-		calc.calc(a:5, b:5, op:"x"); // operação inválida
-	}
+    public static void main(String[] args) {
+        Calculadora calc = new Calculadora();
 
+        // 1. Testes de operações válidas
+        System.out.println(calc.calcular(2, 3, "+"));
+        System.out.println(calc.calcular(10, 4, "-"));
+        System.out.println(calc.calcular(3, 5, "*"));
+        System.out.println(calc.calcular(8, 2, "/"));
+
+        // 2. Teste de Divisão por Zero (exceção esperada)
+        try {
+            System.out.println(calc.calcular(8, 0, "/")); // exceção
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+        // 3. Teste de Operador Inválido (exceção esperada)
+        try {
+            System.out.println(calc.calcular(5, 5, "x")); // exceção
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
